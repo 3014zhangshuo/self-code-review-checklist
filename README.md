@@ -15,3 +15,9 @@
 * 大量数据更新可以用 each_slice + transaction 或者是 find_each + transaction，节省数据库连接的时间，但要考虑都报错rollback的可能，transaction rollback 是全 rollback
 * 少用 logger debug，多思考逻辑，仔细阅读代码，考虑数据的可能性，不要心急，节省时间
 * 如果使用 Rails [active_record_shards](https://github.com/zendesk/active_record_shards)，要记得 `on_all_shards` 是迭代器，如果有多个 shards，block 代码会执行多次
+
+```ruby
+on_all_shards do
+  send_welcome_emal
+end
+```
