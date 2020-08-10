@@ -51,3 +51,4 @@
 #### 17. `URI::HTTP.build` 或者 `URI::HTTPS.build` 时，主要中文参数会报错，需要先 encode
 #### 18. 对已有接口修改时，要确定修改影响范围，别的未跟你说的，要自己考虑一下，尤其是接口权限的修改
 #### 19. 避免使用 `after_save`，因为 `after_save`是在一个 `transaction` 中可能会多次触发 `save`，优先使用 `after_commit`
+#### 20. redis set hash 的时候记得 hash 要 to_json
