@@ -54,3 +54,4 @@
 #### 20. redis set hash 的时候记得 hash 要 to_json
 #### 21. 如果数据库分片，并在 Action 层设置了分片策略，新的 Action 记得要注册分片策略
 #### 22. 不要使用 `after_initialize` 初始化 `attribute`，会造成 `select(:id)` 后的链式方法调用出现问题: `attribute_missing`
+#### 23. 数据需要考虑是否批量处理（思考可能的数据量大小）
