@@ -56,7 +56,7 @@
 #### 22. 不要使用 `after_initialize` 初始化 `attribute`，会造成 `select(:id)` 后的链式方法调用出现问题: `attribute_missing`
 #### 23. 数据需要考虑是否批量处理（思考可能的数据量大小）
 #### 24. sidekiq 如果要使用复杂参数的话，不要使用 symbol_keys, 要使用 string_keys
-  >> The arguments you pass to perform_async must be composed of simple JSON datatypes: string, integer, float, boolean, null(nil), array and hash. This means you must not use ruby symbols as arguments. The Sidekiq client API uses JSON.dump to send the data to Redis. The Sidekiq server pulls that JSON data from Redis and uses JSON.load to convert the data back into Ruby types to pass to your perform method. Don't pass symbols, named parameters or complex Ruby objects (like Date or Time!) as those will not survive the dump/load round trip correctly.
+  > The arguments you pass to perform_async must be composed of simple JSON datatypes: string, integer, float, boolean, null(nil), array and hash. This means you must not use ruby symbols as arguments. The Sidekiq client API uses JSON.dump to send the data to Redis. The Sidekiq server pulls that JSON data from Redis and uses JSON.load to convert the data back into Ruby types to pass to your perform method. Don't pass symbols, named parameters or complex Ruby objects (like Date or Time!) as those will not survive the dump/load round trip correctly.
 ```ruby
 params = JSON.dump({email_address: "someemailaddress@gmail.com", something_else: "thing"})
 JSON.load(params) #=> {"email_address"=>"someemailaddress@gmail.com", "something_else"=>"thing"}
