@@ -61,3 +61,14 @@
 params = JSON.dump({email_address: "someemailaddress@gmail.com", something_else: "thing"})
 JSON.load(params) #=> {"email_address"=>"someemailaddress@gmail.com", "something_else"=>"thing"}
 ```
+#### 25.建议使用 `each_with_object` 而非 `inject`，`inject` 需要思考迭代对象的返回，一不小心就会出现 nil 的情况
+```ruby
+ticket_params.inject([]) do |change_attrs, (key, value)|
+  change_attrs << key if attrs[key] != value // 这里可能会不执行，不执行的话下次迭代 change_attrs 就是 nil 了
+end
+
+ticket_params.each_with_object([]) do |(key, value), change_attrs|
+  change_attrs << key if attrs[key] != value
+end
+```
+#### 26. 注意 model callback 逻辑
