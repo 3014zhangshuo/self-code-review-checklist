@@ -71,4 +71,31 @@ ticket_params.each_with_object([]) do |(key, value), change_attrs|
   change_attrs << key if attrs[key] != value
 end
 ```
-#### 26. 注意 model callback 逻辑
+#### 26. 注意 model callback 逻辑，尤其是在其他模块中的，下面的例子中 profile 的 username 会为 nil
+```ruby
+class User
+  include Profilable
+  
+  before_create :set_name
+  
+  private
+  
+  def set_name
+    self.name = "Aka"
+  end
+end
+
+module Profilable
+  extend ActiveSupport::Concern
+
+  included do
+    before_create :set_profile
+  end
+  
+  private
+  
+  def set_profile
+    Profile.find_or_create(username: self.name)
+  end
+end
+```
