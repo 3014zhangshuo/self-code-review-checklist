@@ -99,3 +99,7 @@ module Profilable
   end
 end
 ```
+
+#### 27. https://stackoverflow.com/questions/19064209/how-is-each-with-object-supposed-to-work
+#### 28. https://ksylvest.com/posts/2017-08-23/eager-loading-polymorphic-associations-with-ruby-on-rails
+#### 29. https://sites.google.com/site/gzhpwiki/home/guo-cheng-shi-jian/http-xie-yi-zhong-de-ge-zhong-zhang-du-xian-zhi-zong-jie
