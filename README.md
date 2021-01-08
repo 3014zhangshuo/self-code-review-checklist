@@ -100,7 +100,22 @@ module Profilable
 end
 ```
 
-#### 27. https://stackoverflow.com/questions/19064209/how-is-each-with-object-supposed-to-work
+#### 27. each_with_object 中迭代值不要使用 `+=`
+
+先看一下 each_with_object 的文档:
+Iterates the given block for each element with an arbitrary object given, and returns the initially given object.
+
+文档明确是返回原始值，但为什么下面的代码原始值并没有改变呢？
+
+```ruby
+(1..3).each_with_object(0) {|i,sum| sum += i} # => 0
+("a".."c").each_with_object("") {|i,str| str += i} # => ""
+```
+
+ruby string 中的 `+=` 是返回新值得，而 integer 每个值都是唯一不变的
+
+*https://stackoverflow.com/questions/19064209/how-is-each-with-object-supposed-to-work*
+
 #### 28. https://ksylvest.com/posts/2017-08-23/eager-loading-polymorphic-associations-with-ruby-on-rails
 #### 29. https://sites.google.com/site/gzhpwiki/home/guo-cheng-shi-jian/http-xie-yi-zhong-de-ge-zhong-zhang-du-xian-zhi-zong-jie
 #### 30. 多个条件(&&)选择按计算量大小顺序写(小的在前头)优先断路
