@@ -105,14 +105,14 @@ end
 先看一下 each_with_object 的文档:
 Iterates the given block for each element with an arbitrary object given, and returns the initially given object.
 
-文档明确是返回原始值，但为什么下面的代码原始值并没有改变呢？
+返回原始值，但为什么下面的代码原始值并没有改变呢？
 
 ```ruby
 (1..3).each_with_object(0) {|i,sum| sum += i} # => 0
 ("a".."c").each_with_object("") {|i,str| str += i} # => ""
 ```
 
-ruby string 中的 `+=` 是返回新值得，而 integer 每个值都是唯一不变的
+ruby string 中的 `+=` 是返回 new string object，而 integer 中的 `+=` 是返回 other immutable integer
 
 *https://stackoverflow.com/questions/19064209/how-is-each-with-object-supposed-to-work*
 
